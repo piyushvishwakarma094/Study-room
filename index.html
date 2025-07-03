@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Study Room094 - BCA Final Year Project</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+    
+    <!-- Header -->
+    <header class="bg-black bg-opacity-20 backdrop-blur-md border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Virtual Study Room
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-2 text-green-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                        <span class="font-semibold" id="activeUsers">12 studying</span>
+                    </div>
+                    <button id="soundToggle" class="p-2 rounded-full bg-white bg-opacity-10 hover:bg-opacity-20 transition-colors">
+                        <svg id="soundIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M8.083 5.5H4a1 1 0 00-1 1v11a1 1 0 001 1h4.083l4.674 3.129a.5.5 0 00.743-.43V2.801a.5.5 0 00-.743-.432L8.083 5.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Main Timer Section -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Timer Card -->
+                <div id="timerCard" class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-8 shadow-2xl">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <span id="modeText" class="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-semibold">
+                                Focus Time
+                            </span>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <div id="timerDisplay" class="text-7xl font-mono font-bold mb-4">
+                                25:00
+                            </div>
+                            <div id="sessionInfo" class="text-xl opacity-80">
+                                Session 1 • Cycle 1
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center space-x-4">
+                            <button id="playPauseBtn" class="flex items-center space-x-2 bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                <svg id="playPauseIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span id="playPauseText">Start</span>
+                            </button>
+                            <button id="resetBtn" class="flex items-center space-x-2 bg-white bg-opacity-20 px-6 py-4 rounded-full font-semibold hover:bg-opacity-30 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                                <span>Reset</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Subject & Goal -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold">Current Subject</h3>
+                        </div>
+                        <input type="text" id="currentSubject" value="Data Structures" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent">
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold">Today's Goal</h3>
+                        </div>
+                        <input type="text" id="studyGoal" value="Complete 3 Pomodoro sessions" class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-400 focus:border-transparent">
+                    </div>
+                </div>
+                
+                <!-- Notes Section -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                        <span>Study Notes</span>
+                    </h3>
+                    <textarea id="studyNotes" placeholder="Take notes during your study session..." class="w-full h-32 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 resize-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"></textarea>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                
+                <!-- Stats -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                        <span>Study Stats</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Today</span>
+                                <span id="todayTime">120 min</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div id="todayProgress" class="bg-blue-400 h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Weekly Goal</span>
+                                <span id="weeklyTime">480/840 min</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div id="weeklyProgress" class="bg-green-400 h-2 rounded-full" style="width: 57%"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 border-t border-white border-opacity-20">
+                            <span class="text-sm">Sessions Completed</span>
+                            <span id="completedSessions" class="text-2xl font-bold text-purple-400">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Task List -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold mb-4">Task List</h3>
+                    
+                    <div id="taskList" class="space-y-3 mb-4">
+                        <!-- Tasks will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <input type="text" id="newTaskInput" placeholder="Add new task..." class="flex-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent">
+                        <button id="addTaskBtn" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-sm font-semibold transition-colors">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Study Room Ambience -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <span>Room Ambience</span>
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="ambience-btn p-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm transition-colors" data-sound="rain">
+                            🌧️ Rain
+                        </button>
+                        <button class="ambience-btn p-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm transition-colors" data-sound="fireplace">
+                            🔥 Fireplace
+                        </button>
+                        <button class="ambience-btn p-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm transition-colors" data-sound="ocean">
+                            🌊 Ocean
+                        </button>
+                        <button class="ambience-btn p-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm transition-colors" data-sound="cafe">
+                            ☕ Café
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
